@@ -1,0 +1,20 @@
+Step 1:
+	First We need to create bot from bot father from telegram.
+
+Step 2:
+	Second we write code in our Code Editor by using python package Python-telegram-bot.
+
+Step 3:
+	Then we deploy our bot on hosting website Heroku before that we need 2 software to push on heroku first one is
+	heroku and then git.
+
+Step 4:
+	For that first we create account on heroku
+
+step 5:
+	required pip packages is praw, gtts, python-telegram-bot you can see in requirements.txt
+
+Note: if you need my code you can pull it from git
+
+
+***** COMPLETED *****
